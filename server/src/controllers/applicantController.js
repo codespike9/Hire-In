@@ -30,6 +30,7 @@ const registerApplicant = async (req, res) => {
       return res.status(201).json({
         access_token: access_token,
         user: {
+          role:"Candidate",
           username: new_applicant.name,
           email: new_applicant.email,
           mobile_no: new_applicant.mobile_no,
@@ -70,6 +71,7 @@ const loginApplicant = async (req, res) => {
     return res.status(201).json({
       access_token: access_token,
       user: {
+        role:"Candidate",
         username: userData.name,
         email: userData.email,
         mobile_no: userData.mobile_no,

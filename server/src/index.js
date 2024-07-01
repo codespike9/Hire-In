@@ -1,7 +1,7 @@
 require('dotenv').config();
 const dbConnect=require("./db/db.config");
 const app=require("./app");
-const PORT=process.env.PORT || 8000 ;
+const PORT=process.env.PORT || 8001 ;
 const SERVER_URL = `http://localhost:${PORT}`;
 
 (async function (){

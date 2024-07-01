@@ -11,6 +11,8 @@ router.use(middleware.logRequest);
 router.use('/user',applicantRouter);
 router.use('/employer',employerRouter);
 router.use('/jobs',jobRouter);
-
+router.get('/',(req,res)=>{
+    res.send("Welcome to the job-portal");
+})
 
 module.exports=router;

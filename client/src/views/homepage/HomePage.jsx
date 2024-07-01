@@ -1,13 +1,13 @@
 import React from 'react'
 import Header from '../../components/header/Header'
 import JobList from '../../components/joblist/JobList'
-import SearchBar from '../../components/others/SearchBar'
+import Hero from '../../components/hero/Hero'
 
 const HomePage = () => {
   return (
-    <div>
+    <div className='bg-purple-200 '>
       <Header />
-      <SearchBar />
+      <Hero />
       <JobList />
     </div>
   )

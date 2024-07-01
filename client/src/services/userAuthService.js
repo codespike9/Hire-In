@@ -20,8 +20,10 @@ class UserAuthService{
 
     async userLogin(data){
         try {
-            const response=await axios.post(`${this.api}/user/user-registration`,data,{})
+            const response=await axios.post(`${this.api}/user/user-login`,data,{})
             console.log(response.data.user);
+
+            return response.data.user;
         } catch (error) {
             console.error(error);
             throw error;

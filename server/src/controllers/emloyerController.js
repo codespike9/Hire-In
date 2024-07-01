@@ -26,6 +26,7 @@ const registerEmployer = async (req, res) => {
       return res.status(201).json({
         access_token: access_token,
         user: {
+          role:"Recruiter",
           username: new_employer.employer.name,
           email: new_employer.employer.email,
         },
@@ -58,8 +59,7 @@ const loginEmployer = async (req, res) => {
     const access_token = generateToken(payload);
     if (userData && access_token) {
       res.cookie("access_token", access_token, {
-        httpOnly: true,
-        secure: true,
+        httpOnly: false,
         maxAge: 3 * 24 * 60 * 60 * 1000,
         sameSite: "strict",
       });
@@ -67,6 +67,8 @@ const loginEmployer = async (req, res) => {
     return res.status(201).json({
       access_token: access_token,
       user: {
+        role:"Recruiter",
+        companyId:userData._id,
         username: userData.employer.name,
         email: userData.employer.email,
       },

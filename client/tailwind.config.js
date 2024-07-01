@@ -8,6 +8,8 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Roboto', 'sans-serif'],
+        display: ['Poppins', 'sans-serif'],
+        heading:['Merriweather','sans-serif']
       },
     },
   },

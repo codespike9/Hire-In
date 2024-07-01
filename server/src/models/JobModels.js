@@ -39,21 +39,9 @@ const jobSchema = new Schema({
   },
   CTC: {
     type: Number,
-    validate: {
-      validator: function(value) {
-        return this.jobType !== 'internship' && this.jobType !== 'part-time' || value != null;
-      },
-      message: 'CTC is required for full-time jobs'
-    }
   },
   stipend: {
     type: Number,
-    validate: {
-      validator: function(value) {
-        return this.jobType === 'internship' || value != null;
-      },
-      message: 'Stipend is required for internships'
-    }
   },
   yearsOfExperience: {
     type: Number,
@@ -73,9 +61,24 @@ const jobSchema = new Schema({
       type:Date,
       default:Date.now
     },
-    // type: Schema.Types.ObjectId,
-    // ref: 'Applicant',
   }]
+});
+
+// Pre-save hook to validate stipend and CTC
+jobSchema.pre('save', function(next) {
+  if (this.jobType === 'internship' && this.stipend == null) {
+    return next(new Error('Stipend is required for internships'));
+  }
+  if (this.jobType !== 'internship' && this.CTC == null) {
+    return next(new Error('CTC is required for full-time and part-time jobs'));
+  }
+  if (this.jobType === 'internship' && this.CTC != null) {
+    return next(new Error('CTC should not be provided for internships'));
+  }
+  if (this.jobType !== 'internship' && this.stipend != null) {
+    return next(new Error('Stipend should not be provided for full-time and part-time jobs'));
+  }
+  next();
 });
 
 // Create a model based on the schema

@@ -1,29 +1,45 @@
 // src/components/JobList.jsx
 import React from 'react';
+import SearchBar from '../others/SearchBar';
+import JobCard from './JobCard';
 
 const JobList = () => {
   const jobs = [
     { company: 'Gojek', title: 'Senior - Product Designer', location: 'Jakarta - Indonesia', category: 'Design', daysAgo: 3 },
     { company: 'Tokopedia', title: 'Project Manager', location: 'Jakarta - Indonesia', category: 'Product', daysAgo: 4 },
     { company: 'Dropbox', title: 'Senior - Software Engineer', location: 'Anywhere - Remote', category: 'Engineer', daysAgo: 5 },
+    { company: 'Gojek', title: 'Senior - Product Designer', location: 'Jakarta - Indonesia', category: 'Design', daysAgo: 3 },
+    { company: 'Tokopedia', title: 'Project Manager', location: 'Jakarta - Indonesia', category: 'Product', daysAgo: 4 },
+    { company: 'Dropbox', title: 'Senior - Software Engineer', location: 'Anywhere - Remote', category: 'Engineer', daysAgo: 5 },
+    { company: 'Gojek', title: 'Senior - Product Designer', location: 'Jakarta - Indonesia', category: 'Design', daysAgo: 3 },
+    { company: 'Tokopedia', title: 'Project Manager', location: 'Jakarta - Indonesia', category: 'Product', daysAgo: 4 },
+
   ];
 
   return (
-    <div className="py-10 px-8">
-      <h2 className="text-2xl font-bold mb-6">Most Recent Searches</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {jobs.map((job, index) => (
-          <div key={index} className="bg-white p-6 rounded shadow-md">
-            <div className="flex justify-between items-center mb-4">
-              <div className="text-lg font-bold">{job.company}</div>
-              <div className="text-sm text-gray-500">{job.daysAgo} days ago</div>
-            </div>
-            <div className="text-xl text-gray-800 mb-2">{job.title}</div>
-            <div className="text-gray-600 mb-4">{job.location}</div>
-            <div className="text-sm bg-purple-100 text-purple-700 px-2 py-1 rounded">{job.category}</div>
+    <div className='border-2 border-violet-500 rounded-t-3xl mx-10 px-5 py-10 md:p-10  bg-violet-200'>
+
+      <div className="flex flex-col gap-4">
+
+        <div className="flex font-display justify-between items-center">
+          <h1 className='font-semibold text-xl flex flex-1 justify-center items-center md:justify-start'>Today's Trending Job</h1>
+
+          <div className="hidden lg:flex rounded">
+            <input type="text" placeholder="Web Design" className="px-4 py-2 border shadow-md border-gray-300 rounded-l" />
+            <input type="text" placeholder="Mumbai" className="px-4 py-2 shadow-md border-t border border-gray-300" />
+            <button className="bg-black text-white ms-2 px-6 py-2 rounded">Search</button>
           </div>
-        ))}
+
+
+        </div>
+
+        <div className='flex gap-4 overflow-scroll hide-scrollbar'>
+          {jobs.map((job)=>(
+            <JobCard company={job.company} location={job.location} type={job.type} />
+          ))}
+        </div>
       </div>
+
     </div>
   );
 };
